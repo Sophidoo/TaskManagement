@@ -1,6 +1,7 @@
 import Style from "../styles/Home.module.css";
 import Navbar from "../components/Navbar";
 import task1 from "../images/task1.svg"
+import { NavLink } from "react-router-dom";
 
 const Home = () => {
 
@@ -12,7 +13,7 @@ const Home = () => {
             <div className={Style.heroContent}>
                 <h1>Manage Your Day With Task<span>Pal</span></h1>
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore aperiam optio id iste, sunt vitae rem ab. Facilis ab modi, voluptas, fugit at recusandae quam, repellat laboriosam eius possimus aliquid.</p>
-                <a href="register"><button>Get Started</button></a>
+                <NavLink to="/register" end><button>Get Started</button></NavLink>
             </div>
             <div className={Style.pictures}>
                 <img src={task1} alt="" />

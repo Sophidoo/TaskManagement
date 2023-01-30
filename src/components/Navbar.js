@@ -1,5 +1,6 @@
 import Style from "../styles/Navbar.module.css";
 import { BsBarChartFill } from "react-icons/bs";
+import { NavLink } from "react-router-dom";
 
 const Navbar = () => {
 
@@ -10,12 +11,12 @@ const Navbar = () => {
                 <p>TaskPal</p>
             </div>
             <div className={Style.buttons}>
-                <a href="register">
+                <NavLink to="/register">
                     <button>Create New Account</button>
-                </a>
-                <a href="login">
+                </NavLink>
+                <NavLink to="/login">
                     <button>Login</button>
-                </a>
+                </NavLink>
             </div>
         </div>
     </>
