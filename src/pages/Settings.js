@@ -1,6 +1,6 @@
 import BoardNavbar from "../components/BoardNavbar";
 import Sidebar from "../components/Sidebar";
-import Style from "../styles/Settings.module.css";
+import Style from "../styles/Setting.module.css";
 // import { useEffect } from "react";
 // import Cookies from "universal-cookie";
 // import axios from "axios";
