@@ -1,4 +1,4 @@
-.settingsWrapper{
+.container{
     background-color: whitesmoke;
     /* width: 100%; */
     /* height: 100vh; */
@@ -11,26 +11,32 @@
     flex-direction: column;
     row-gap: 40px;
 }
-.settingsWrapper form{
+.container form{
     display: flex;
+    flex-direction: column;
     row-gap: 20px;
     column-gap: 4%;
     flex-wrap: wrap;
 }
-.settingsWrapper .inputWrapper{
+.container .inputWrapper{
     display: flex;
     flex-direction: column;
     row-gap: 3px;
     width: 48%;
 
 }
-.settingsWrapper input{
+.container input{
+    padding: 6px 10px;
+    border-radius: 5px;
+    border: 1px solid rgb(122, 122, 122);
+}
+.container select{
     padding: 6px 10px;
     border-radius: 5px;
     border: 1px solid rgb(122, 122, 122);
 }
 
-.settingsWrapper button{
+.container button{
     margin-top: 5px;
     padding: 10px 20px;
     font-size: 16px;
@@ -40,25 +46,13 @@
     border: 0px;
     box-shadow: 0px 7px 15px rgba(11, 84, 11, 0.249);
 }
-.settingsWrapper button:hover{
+.container button:hover{
     cursor: pointer;
     color: yellow;
     transition: 500ms;
 }
-.accountWrapper{
+.contWrapper{
     display: flex;
     flex-direction: column;
     row-gap: 20px;
-}
-.passwordWrapper{
-    display: flex;
-    flex-direction: column;
-    row-gap: 20px;
-}
-.settingsWrapper h1{
-    font-weight: 500;
-    font-size: 30px;
-}
-.passwordWrapper button{
-    margin-top: 14px;
 }

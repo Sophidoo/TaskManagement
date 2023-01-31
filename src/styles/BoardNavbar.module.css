@@ -31,6 +31,9 @@
     font-size: 30px;
     border-radius: 100%;
 }
+.leftTopNav svg:hover{
+    cursor: pointer;
+}
 .leftTopNav p{
     font-weight: 500;
     letter-spacing: 2px;
@@ -43,6 +46,10 @@
 }
 .rightTopNav svg{
     font-size: 18px;
+    color: black;
+}
+.rightTopNav svg:hover{
+    cursor: pointer;
 }
 
 .bottomNav{
@@ -50,6 +57,7 @@
     justify-content: space-between;
     align-items: center;
     padding: 10px 60px;
+    position: relative;
 }
 .leftBottomNav{
     display: flex;
@@ -83,4 +91,39 @@
 }
 .rightBottomNav svg:hover{
     cursor: pointer;
+}
+.toggleCard{
+    position: absolute;
+    right: 60px;
+    top: 45px;
+    width: fit-content;
+    height: fit-content;
+    padding: 10px 0px;
+    display: flex;
+    flex-direction: column;
+    z-index: 50;
+    background-color: white;
+    box-shadow: 0px 0px 10px rgb(221, 221, 221);
+    border-radius: 5px;
+}
+.hide{
+    display: none;
+}
+.toggleCard .wrap{
+    display: flex;
+    flex-direction: column;
+}
+
+.toggleCard a{
+    padding: 8px 20px;
+    color: black;
+    text-decoration: none;
+}
+.toggleCard a:hover{
+    padding: 8px 20px;
+    color: rgb(28, 135, 243);
+    text-decoration: none;
+}
+.toggleCard a:nth-child(1){
+    border-bottom: 1px solid rgb(189, 189, 189);
 }
