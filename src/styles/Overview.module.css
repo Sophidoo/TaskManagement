@@ -1,0 +1,68 @@
+.hero{
+    background-color: whitesmoke;
+    /* width: 100%; */
+    /* height: 100vh; */
+    margin-top: 100px;
+    margin-right: 25%;
+    height: fit-content;
+    min-height: 86vh;
+}
+.emptyWrapper{
+    display: grid;
+    place-items: center;
+    height: 86vh;
+    display: none;
+}
+.emptyWrapper .wrap{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 10px;
+}
+.emptyWrapper .wrap svg{
+    font-size: 80px;
+}
+.taskWrapper{
+    padding: 60px;
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 3%;
+    row-gap: 20px;
+}
+.taskBox{
+    background-color: white;
+    width: fit-content;
+    padding: 20px 20px;
+    height: 130px;
+    width: 31%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.taskBox .taskHead{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    column-gap: 5px;
+}
+.taskBox .taskHead svg{
+    color: black;
+    font-size: 18px;
+    cursor: pointer;
+}
+.taskBox .taskHead svg:hover{
+    color: rgb(61, 139, 218);
+}
+.taskWrapper .taskBottom{
+    display: flex;
+    flex-direction: column;
+    row-gap: 2px;
+}
+.taskWrapper .taskBottom span{
+    font-weight: 600;
+    color: black;
+}
+.taskWrapper .taskBottom p{
+    font-size: 15px;
+    color: rgb(74, 74, 74);
+}

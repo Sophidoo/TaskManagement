@@ -1,0 +1,49 @@
+.sideWrapper{
+    width: 25%;
+    position: fixed;
+    right: 0px;
+    top: 100px;
+    height: 90vh;
+    background-color: white;
+    padding: 40px 50px;
+    padding-right: 60px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 40px;
+}
+.sideWrapper h1{
+    font-size: 25px;
+}
+.topWrapper{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    row-gap: 15px;
+}
+.cardContainer{
+    display: flex;
+    column-gap: 2%;
+    row-gap: 20px;
+    flex-wrap: wrap;
+}
+
+.cardContainer .card{
+    width: 48%;
+    display: flex;
+    flex-direction: column;
+    row-gap: 5px;
+}
+.cardContainer p{
+    color: rgb(96, 96, 96);
+    font-size: 14px;
+}
+.cardContainer h3{
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.bottomWrapper{
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+}

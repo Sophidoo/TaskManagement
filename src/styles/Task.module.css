@@ -1,0 +1,45 @@
+.hero{
+    background-color: whitesmoke;
+    /* width: 100%; */
+    /* height: 100vh; */
+    margin-top: 100px;
+    margin-right: 25%;
+    height: fit-content;
+    min-height: 86vh;
+    padding: 50px 60px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 30px;
+}
+.tasks{
+    display: flex;
+    flex-direction: column;
+}
+.task{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 10px;
+    border-bottom: 1px solid rgb(173, 173, 173);
+}
+.task .leftWrapper{
+    display: flex;
+    align-items: flex-end;
+    column-gap: 5px;
+}
+.task .leftWrapper input{
+    width: 15px;
+    height: 15px;
+}
+.task .timeWrap{
+    display: flex;
+    margin-left: 20px;
+    font-size: 14px;
+    align-items: center;
+    column-gap: 20px;
+    font-weight: 600;
+}
+.task .timeWrap span{
+    font-weight: 500;
+    color: rgb(85, 85, 85);
+}

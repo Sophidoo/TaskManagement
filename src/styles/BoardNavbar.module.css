@@ -1,0 +1,86 @@
+
+
+.wrapper{
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    background-color: white;
+    box-shadow: 3px 0px 10px rgba(228, 228, 228, 0.827);
+    z-index: 20;
+}
+.topNav{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 60px;
+    border-bottom: 1px solid rgb(177, 177, 177);
+}
+.leftTopNav{
+    display: flex;
+    align-items: center;
+
+    column-gap: 5px;
+}
+.leftTopNav svg{
+    color: yellow;
+    background-color: rgb(28, 154, 28);
+    padding: 7px;
+    font-size: 30px;
+    border-radius: 100%;
+}
+.leftTopNav p{
+    font-weight: 500;
+    letter-spacing: 2px;
+    font-size: 16px;
+}
+.rightTopNav{
+    display: flex;
+    column-gap: 15px;
+    align-items: center;
+}
+.rightTopNav svg{
+    font-size: 18px;
+}
+
+.bottomNav{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 60px;
+}
+.leftBottomNav{
+    display: flex;
+    column-gap: 50px;
+    align-items: center;
+}
+.leftBottomNav .link{
+    display: flex;
+    align-items: center;
+    column-gap: 5px;
+}
+.leftBottomNav .link:hover{
+    cursor: pointer;
+}
+.leftBottomNav .link svg{
+    font-size: 18px;
+}
+.leftBottomNav .link:nth-child(1) svg{
+    color: rgb(168, 168, 0);
+}
+.leftBottomNav .link:nth-child(2) svg{
+    color: green;
+}
+.leftBottomNav .link:nth-child(3) svg{
+    color: red;
+}
+
+.rightBottomNav svg{
+    color: green;
+    font-size: 30px;
+}
+.rightBottomNav svg:hover{
+    cursor: pointer;
+}
