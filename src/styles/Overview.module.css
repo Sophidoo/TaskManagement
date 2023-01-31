@@ -66,3 +66,56 @@
     font-size: 15px;
     color: rgb(74, 74, 74);
 }
+
+@media(max-width: 1300px){
+    .hero{
+        margin-right: 30%;
+    }
+    .taskWrapper{
+        padding: 60px 40px;
+    }
+}
+@media(max-width: 1000px){
+    .hero{
+        margin-right: 0%;
+    }
+    .taskWrapper{
+        padding: 60px 40px;
+    }
+}
+
+@media(max-width: 800px){
+    .taskBox{
+        width: 48.5%;
+    }
+    .taskWrapper{
+        padding: 60px 20px;
+    }
+}
+@media(max-width: 600px){
+    .taskBox{
+        width: 100%;
+    }
+    .taskWrapper{
+        padding: 45px 20px;
+    }
+    .taskHead h3{
+        font-size: 18px;
+    }
+    
+}
+@media(max-width: 400px){
+    .taskHead h3{
+        font-size: 18px;
+    }
+    .taskWrapper{
+        padding: 40px 10px;
+    }
+    .taskBox{
+        height: fit-content;
+        row-gap: 30px;
+    }
+    .taskWrapper .taskBottom p{
+        font-size: 14px;
+    }
+}

@@ -47,7 +47,7 @@
 }
 
 .leftWrapper button{
-    margin-top: 5px;
+    margin-top: 0px;
     padding: 10px 20px;
     font-size: 16px;
     background-color: rgb(21, 135, 21);
@@ -60,6 +60,10 @@
     cursor: pointer;
     color: yellow;
     transition: 500ms;
+}
+.error{
+    font-size: 14px;
+    color: rgb(223, 0, 0);
 }
 
 .rightWrapper{

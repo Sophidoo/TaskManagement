@@ -1,10 +1,9 @@
 import Style from "../styles/Sidebar.module.css";
 import Calendar from "react-calendar";
-import { useState } from "react";
 // import 'react-calendar/dist/Calendar.css';
 
 const Sidebar = () => {
-    const [date, setDate] = useState(new Date())
+    let today = new Date()
 
     return <>
         <div className={Style.sideWrapper}>
@@ -31,7 +30,7 @@ const Sidebar = () => {
             </div>
             <div className={Style.bottomWrapper}>
                 <h1>Calendar</h1>
-                <Calendar value={date}/>
+                <Calendar value={today}/>
             </div>
         </div>
     </>

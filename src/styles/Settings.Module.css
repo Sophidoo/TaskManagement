@@ -1,7 +1,5 @@
 .settingsWrapper{
     background-color: whitesmoke;
-    /* width: 100%; */
-    /* height: 100vh; */
     margin-top: 100px;
     margin-right: 25%;
     height: fit-content;
@@ -61,4 +59,54 @@
 }
 .passwordWrapper button{
     margin-top: 14px;
+}
+
+@media(max-width: 1300px){
+    .settingsWrapper{
+        margin-right: 30%;
+    }
+}
+@media(max-width: 1000px){
+    .settingsWrapper{
+        margin-right: 0;
+        padding: 50px 40px;
+    }
+}
+@media(max-width: 800px){
+
+    .settingsWrapper{
+        padding: 40px 20px;
+    }
+}
+@media(max-width: 600px){
+    .settingsWrapper h1{
+        font-size: 25px;
+    }
+    .settingsWrapper{
+        padding: 40px 20px;
+    }
+    .settingsWrapper .inputWrapper{
+        font-size: 14px;
+    }
+    .settingsWrapper button{
+        font-size: 14px;
+    }
+}
+@media(max-width: 500px){
+    .settingsWrapper h1{
+        font-size: 22px;
+    }
+    .settingsWrapper .inputWrapper{
+        width: 100%;
+        font-size: 14px;
+    }
+}
+@media(max-width: 400px){
+    .settingsWrapper{
+        padding: 40px 10px;
+    }
+    .settingsWrapper .inputWrapper{
+        width: 100%;
+        font-size: 14px;
+    }
 }

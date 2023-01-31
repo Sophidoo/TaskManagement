@@ -127,3 +127,61 @@
 .toggleCard a:nth-child(1){
     border-bottom: 1px solid rgb(189, 189, 189);
 }
+
+@media(max-width: 1300px){
+    .topNav{
+        padding: 10px 40px;
+    }
+    .toggleCard{
+        right: 40px;
+    }
+    .bottomNav{
+        padding: 10px 40px;
+    }
+}
+@media(max-width: 800px){
+    .topNav{
+        padding: 10px 20px;
+    }
+    .toggleCard{
+        right: 20px;
+    }
+    .bottomNav{
+        padding: 10px 20px;
+    }
+    .leftBottomNav{
+        column-gap: 30px;
+    }
+    .leftBottomNav .link{
+        flex-direction: column;
+        row-gap: 0px;
+    }
+    .leftBottomNav .link p{
+        font-size: 13px;
+    }
+
+}
+@media(max-width: 500px){
+    .leftTopNav svg{
+        font-size: 28px;
+        padding: 5px;
+    } 
+    .rightBottomNav svg{
+        font-size: 25px;
+    }
+    .toggleCard{
+        font-size: 14px;
+        padding: 5px 0;
+    }
+}
+@media(max-width: 400px){
+    .topNav{
+        padding: 10px;
+    }
+    .toggleCard{
+        right: 10px;
+    }
+    .bottomNav{
+        padding: 10px;
+    }
+}

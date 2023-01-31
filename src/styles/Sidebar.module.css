@@ -47,3 +47,17 @@
     flex-direction: column;
     row-gap: 10px;
 }
+
+@media(max-width: 1300px){
+    .sideWrapper{
+        padding: 40px 30px;
+        padding-right: 40px;
+        /* display: none; */
+        width: 30%;
+    }
+}
+@media(max-width: 1000px){
+    .sideWrapper{
+        display: none;
+    }
+}
