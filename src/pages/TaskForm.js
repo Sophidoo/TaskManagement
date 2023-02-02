@@ -7,7 +7,6 @@ import Cookies from "universal-cookie";
 const TaskForm = () => {
     const [taskName, setTaskName] = useState("")
     const [isCompleted, setIsCompleted] = useState(false)
-    const [startDate, setStartDate] = useState()
     const [endDate, setEnddate] = useState()
     const [category, setCategory] = useState()
     const [categoryList, setCategoryList] = useState([])
@@ -24,8 +23,9 @@ const TaskForm = () => {
                   },
                 })
                 .then((response) => response.json())
-              .then((data) => {
+                .then((data) => {
                 console.log(data)
+                setIsCompleted(false)
                   setCategoryList(data.data)
               })
               .catch((error) => {
@@ -50,7 +50,6 @@ const TaskForm = () => {
                 body: JSON.stringify({
                     taskName: taskName,
                     isCompleted: isCompleted,
-                    startTime: startDate,
                     endTime: endDate,
                     category: category
                 })
@@ -62,7 +61,6 @@ const TaskForm = () => {
                 console.log(data)
                 setTaskName("")
                 setEnddate("")
-                setStartDate("")
                 setCategory("")
             })
         }catch(error){
@@ -82,10 +80,6 @@ const TaskForm = () => {
                     <div className={Style.inputWrapper}>
                         <label htmlFor="fnm">Task Name:</label>
                         <input type="text" name="fnm" id="fnm" required value={taskName} onChange={(e) => setTaskName(e.target.value)}/>
-                    </div>
-                    <div className={Style.inputWrapper}>
-                        <label htmlFor="sdate">Task Start Time:</label>
-                        <input type="datetime-local" name="sdate" id="sdate" required  value={startDate} onChange={(e) => setStartDate(e.target.value)}/>
                     </div>
                     <div className={Style.inputWrapper}>
                         <label htmlFor="edate">Task End Time:</label>

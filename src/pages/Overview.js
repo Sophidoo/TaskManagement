@@ -16,6 +16,7 @@ const Overview = () => {
     const[task, setTask] = useState([])
     const[redirect, setRedirect] = useState(false)
     const[checked, setChecked] = useState(false)
+    const [isCompleted, setIsCompleted] = useState(false)
 
     
 
@@ -67,6 +68,30 @@ const Overview = () => {
             })
         }catch(error){
             console.log(error)
+        }
+    }
+
+    const updateTaskCompletion = async (e, id) => {
+        setChecked(e.target.checked)
+        console.log(checked)
+        console.log(id)
+        try{
+            await fetch(`https://aya-task-management.onrender.com/api/v1/users/updatetaskcomplete/${id}`, {
+                method: "PUT",
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    isCompleted: !isCompleted 
+                })
+                
+
+            }).then((response) => response.json())
+            .then((data) => {
+                console.log(data.data)
+            })
+        }catch(error){
+            console.log(error.message)
         }
     }
 
@@ -140,9 +165,9 @@ const Overview = () => {
                                 <div className={Style.task} key={index}>
                                     <div className={Style.leftWrapper}>
                                         <form action="" method="post">
-                                            <input type="checkbox" name="isCompleted" id="" onChange={(e) => setChecked(e.target.checked)}/>
+                                            <input type="checkbox" name="isCompleted" id="" checked={data.isCompleted ? true : false} onChange={(e) => updateTaskCompletion(e, data._id)}/>
                                         </form>
-                                        <h3 className={!checked ? Style.norm : Style.cancel}>{data.taskName}</h3>
+                                        <h3 className={!data.isCompleted ? Style.norm : Style.cancel}>{data.taskName}</h3>
                                         <div className={Style.timeWrap}>
                                             <p>Time Left: <span>{result}</span></p>
                                         </div>
