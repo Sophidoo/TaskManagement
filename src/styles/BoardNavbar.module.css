@@ -72,6 +72,10 @@
 .leftBottomNav .link:hover{
     cursor: pointer;
 }
+.leftBottomNav a{
+    text-decoration: none;
+    color: black;
+}
 .leftBottomNav .link svg{
     font-size: 18px;
 }

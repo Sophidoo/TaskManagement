@@ -17,7 +17,7 @@ const Login = () => {
         e.preventDefault();
 
         try{
-            await fetch("https://aya-task-2-production.up.railway.app/api/v1/users/login", {
+            await fetch("https://aya-task-management.onrender.com/api/v1/users/login", {
                 method: "POST",
                 headers: {
                     'Content-Type': 'application/json'
@@ -30,7 +30,8 @@ const Login = () => {
 
             }).then((response) => response.json())
             .then((data) => {
-                cookies.set("Token", data.data.token, {path: "/"})
+                console.log(data)
+                cookies.set("TOKEN", data.data.token, {path: "/"})
                 if(data.status === "success"){
                     setUser({
                         email: "",

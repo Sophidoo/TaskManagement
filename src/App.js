@@ -3,7 +3,6 @@ import Home from "./pages/Home";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
 import Overview from "./pages/Overview";
-import Task from "./pages/Task";
 import Settings from "./pages/Settings";
 import Category from "./pages/Category";
 import TaskForm from "./pages/TaskForm";
@@ -19,7 +18,6 @@ function App(){
         <Route path = "/login" element = {<Login/>}/>
         <Route path = "/login" element = {<Login/>}/>
         <Route path = "/overview" element = {<Overview/>}/>
-        <Route path = "/overview/task" element = {<Task/>}/>
         <Route path = "/overview/settings" element = {<Settings/>}/>
         <Route path = "/overview/category" element = {<Category/>}/>
         <Route path = "/overview/taskform" element = {<TaskForm/>}/>

@@ -29,18 +29,20 @@ const BoardNavbar = () => {
             </div>
             <div className={Style.bottomNav}>
                 <div className={Style.leftBottomNav}>
-                    <div className={Style.link}>
+                    <NavLink to = "/overview">
+                    <div className={Style.link} >
                         <MdOutlineSpaceDashboard/>
                         <p>Overview</p>
                     </div>
-                    <div className={Style.link}>
+                    </NavLink>
+                    {/* <div className={Style.link}>
                         <BsCheckCircle/>
                         <p>Completed</p>
                     </div>
                     <div className={Style.link}>
                         <MdSchedule/>
                         <p>Overdue</p>
-                    </div>
+                    </div> */}
                 </div>
                 <div className={Style.rightBottomNav}>
                     <BsFillPlusCircleFill onMouseOver={() => setCard(true)}/>

@@ -19,6 +19,18 @@
     align-items: center;
     row-gap: 10px;
 }
+.show{
+    display: flex;
+}
+.hide{
+    display: none;
+}
+.norm{
+    text-decoration: none;
+}
+.cancel{
+    text-decoration: line-through;
+}
 .emptyWrapper .wrap svg{
     font-size: 80px;
 }
@@ -39,6 +51,7 @@
     flex-direction: column;
     justify-content: space-between;
 }
+
 .taskBox .taskHead{
     display: flex;
     align-items: center;
@@ -117,5 +130,134 @@
     }
     .taskWrapper .taskBottom p{
         font-size: 14px;
+    }
+}
+
+.taskhero{
+    background-color: whitesmoke;
+    width: 100%;
+    /* height: 100vh; */
+    margin-top: 100px;
+    margin-right: 25%;
+    height: fit-content;
+    min-height: 86vh;
+    padding: 50px 60px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 30px;
+    
+}
+.taskhero h2{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+.taskhero h2 span{
+    font-weight: 500;
+    font-size: 14px;
+    text-decoration: underline;
+    color: blue;
+}
+.taskhero h2 span:hover{
+    cursor: pointer;
+    text-decoration: none;
+}
+.tasks{
+    display: flex;
+    flex-direction: column;
+}
+.task{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 10px;
+    border-bottom: 1px solid rgb(173, 173, 173);
+}
+.task .leftWrapper{
+    display: flex;
+    align-items: flex-end;
+    column-gap: 5px;
+}
+.task .leftWrapper input{
+    width: 15px;
+    height: 15px;
+}
+.task .timeWrap{
+    display: flex;
+    margin-left: 20px;
+    font-size: 14px;
+    align-items: center;
+    column-gap: 20px;
+    font-weight: 600;
+}
+.task .timeWrap span{
+    font-weight: 500;
+    color: rgb(85, 85, 85);
+}
+
+
+@media(max-width: 1300px){
+    .taskhero{
+        margin-right: 30%;
+    }
+}
+@media(max-width: 1000px){
+    .taskhero{
+        padding: 50px 40px;
+        margin-right: 0px;
+    }
+
+}
+@media(max-width: 800px){
+    .taskhero{
+        padding: 40px 20px;
+    }
+    .task .timeWrap{
+        margin-left: 5px;
+        column-gap: 5px;
+    }
+    .task .leftWrapper{
+        flex-wrap: wrap;
+        row-gap: 4px;
+        
+    }
+    .task .leftWrapper h3{
+        font-size: 18px;
+    }
+}
+@media(max-width: 500px){
+    .task .leftWrapper .timeWrap{
+        margin-left: 20px;
+    }
+    .task{
+        padding: 15px 0;
+    }
+    .task .leftWrapper h3{
+        font-size: 16px;
+    }
+    .task .leftWrapper p{
+        font-size: 13px;
+    }
+}
+@media(max-width: 400px){
+    .taskhero{
+        row-gap: 10px;
+        padding: 40px 10px;
+    }
+    .taskhero h2{
+        font-size: 20px;
+    }
+    .task{
+        padding: 15px 0;
+    }
+    .task .leftWrapper h3{
+        font-size: 14px;
+    }
+    .task .leftWrapper p{
+        font-size: 13px;
+    }
+    .task .leftWrapper input{
+        width: 12px;
+        height: 12px;
     }
 }

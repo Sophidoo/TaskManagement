@@ -23,7 +23,7 @@ const Register = () => {
             setPswError("Password does not match")
         }else{
             try{
-                let res = await fetch("https://aya-task-2-production.up.railway.app/api/v1/users/register", {
+                let res = await fetch("https://aya-task-management.onrender.com/api/v1/users/register", {
                     method: "POST",
                     headers: {
                         'Content-Type': 'application/json'
