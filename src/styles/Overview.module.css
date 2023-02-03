@@ -194,7 +194,16 @@
     font-weight: 500;
     color: rgb(85, 85, 85);
 }
-
+.task .rightWrapper{
+    display: flex;
+    column-gap: 10px;
+}
+.task .rightWrapper svg{
+    font-size: 19px;
+}
+.task .rightWrapper svg:hover{
+    cursor: pointer;
+}
 
 @media(max-width: 1300px){
     .taskhero{

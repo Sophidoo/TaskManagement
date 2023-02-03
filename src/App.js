@@ -6,6 +6,7 @@ import Overview from "./pages/Overview";
 import Settings from "./pages/Settings";
 import Category from "./pages/Category";
 import TaskForm from "./pages/TaskForm";
+import EditTask from "./pages/EditTask";
 
 function App(){
 
@@ -21,6 +22,7 @@ function App(){
         <Route path = "/overview/settings" element = {<Settings/>}/>
         <Route path = "/overview/category" element = {<Category/>}/>
         <Route path = "/overview/taskform" element = {<TaskForm/>}/>
+        <Route path = "/overview/edittask" element = {<EditTask/>}/>
       </Routes>
     </Router>
     

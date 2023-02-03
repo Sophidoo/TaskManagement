@@ -4,9 +4,10 @@ import Sidebar from "../components/Sidebar";
 import {ImDropbox} from "react-icons/im"
 import {BsBoxArrowInDownLeft} from "react-icons/bs"
 import { useEffect, useState } from "react";
-import { NavLink } from "react-router-dom";
+import { useNavigate } from "react-router-dom"
 import Cookies from "universal-cookie";
-import {TbDotsVertical} from "react-icons/tb"
+import {FiEdit3} from "react-icons/fi"
+import {AiOutlineDelete} from "react-icons/ai"
 
 
 const Overview = () => {
@@ -16,15 +17,13 @@ const Overview = () => {
     const[task, setTask] = useState([])
     const[redirect, setRedirect] = useState(false)
     const[checked, setChecked] = useState(false)
-    const [isCompleted, setIsCompleted] = useState(false)
+    // const [isCompleted, setIsCompleted] = useState(false)
 
-    
-
+    const navigate = useNavigate()
     const cookies = new Cookies();
     let token = cookies.get("TOKEN")
 
     useEffect(() => {
-        setRedirect(false)
         const fetchData = async () => {
             await fetch("https://aya-task-management.onrender.com/api/v1/users/category", {
                   method: "get",
@@ -73,6 +72,7 @@ const Overview = () => {
 
     const updateTaskCompletion = async (e, id) => {
         setChecked(e.target.checked)
+        // window.location.reload()
         console.log(checked)
         console.log(id)
         try{
@@ -82,10 +82,10 @@ const Overview = () => {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
-                    isCompleted: !isCompleted 
+                    isCompleted: !checked 
                 })
                 
-
+                
             }).then((response) => response.json())
             .then((data) => {
                 console.log(data.data)
@@ -95,9 +95,34 @@ const Overview = () => {
         }
     }
 
+    const Edit = (id) => {
+        cookies.set("TASK_ID", id, {path: "/"})
+        navigate("/overview/edittask")
+    }
+
+    const Delete = async(id) => {
+        try{
+            await fetch(`https://aya-task-management.onrender.com/api/v1/users/deletetask/${id}`, {
+                method: "DELETE",
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+                
+
+            }).then((response) => response.json())
+            .then((data) => {
+                console.log(data)
+                window.location.reload()
+                setRedirect(true)
+            })
+        }catch(error){
+            console.log(error.message)
+        }
+    }
+
     // const taskList = task
     return <>
-        <BoardNavbar onClick={() => setRedirect(false)}/>
+        <BoardNavbar/>
         <Sidebar/>
         <div className={!redirect ? Style.hero : Style.hide}>
             <div className={Style.emptyWrapper}>
@@ -113,7 +138,6 @@ const Overview = () => {
                         <BsBoxArrowInDownLeft  onClick={() => getTasks("Personal")}/>
                     </div>
                     <div className={Style.taskBottom}>
-                        <p><span>Tasks: </span> 7</p>
                         <p><span>Created: </span> 10:04:34</p>
                     </div>
                 </div>
@@ -123,7 +147,6 @@ const Overview = () => {
                         <BsBoxArrowInDownLeft  onClick={() => getTasks("Work")}/>
                     </div>
                     <div className={Style.taskBottom}>
-                        <p><span>Tasks: </span> 7</p>
                         <p><span>Created: </span> 10:04:34</p>
                     </div>
                 </div>
@@ -136,7 +159,6 @@ const Overview = () => {
                                     <BsBoxArrowInDownLeft onClick={() => getTasks(data.categoryname)}/>
                                 </div>
                                 <div className={Style.taskBottom}>
-                                    <p><span>Tasks: </span> 7</p>
                                     <p><span>Created: </span> {data.createdAt.split("T")[0]}</p>
                                 </div>
                             </div>
@@ -173,7 +195,8 @@ const Overview = () => {
                                         </div>
                                     </div>
                                     <div className={Style.rightWrapper}>
-                                        <TbDotsVertical/>
+                                        <FiEdit3 onClick={() => Edit(data._id)}/>
+                                        <AiOutlineDelete onClick={() => Delete(data._id)}/>
                                     </div>
                                 </div>
                             )

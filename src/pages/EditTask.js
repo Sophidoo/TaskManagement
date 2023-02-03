@@ -4,15 +4,17 @@ import Style from "../styles/Add.module.css";
 import { useState, useEffect } from "react";
 import Cookies from "universal-cookie";
 
-const TaskForm = () => {
+const EditTask = () => {
     const [taskName, setTaskName] = useState("")
-    const [isCompleted, setIsCompleted] = useState(false)
     const [endDate, setEnddate] = useState()
     const [category, setCategory] = useState()
     const [categoryList, setCategoryList] = useState([])
     
     const cookies = new Cookies();
     let token = cookies.get("TOKEN")
+    let taskid = cookies.get("TASK_ID")
+    console.log(taskid)
+
 
     useEffect(() => {
         const fetchData = async () => {
@@ -25,7 +27,6 @@ const TaskForm = () => {
                 .then((response) => response.json())
                 .then((data) => {
                 console.log(data)
-                setIsCompleted(false)
                   setCategoryList(data.data)
               })
               .catch((error) => {
@@ -41,15 +42,13 @@ const TaskForm = () => {
         e.preventDefault();
 
         try{
-            await fetch("https://aya-task-management.onrender.com/api/v1/users/task", {
-                method: "POST",
+            await fetch(`https://aya-task-management.onrender.com/api/v1/users/updatetask/${taskid}`, {
+                method: "PUT",
                 headers: {
                     'Content-Type': 'application/json',
-                    Authorization: `Bearer ${token}`
                 },
                 body: JSON.stringify({
                     taskName: taskName,
-                    isCompleted: isCompleted,
                     endTime: endDate,
                     category: category
                 })
@@ -62,7 +61,6 @@ const TaskForm = () => {
                 setTaskName("")
                 setEnddate("")
                 setCategory("")
-                window.location.reload()
             })
         }catch(error){
             console.log(error)
@@ -75,7 +73,7 @@ const TaskForm = () => {
     <Sidebar/>
 
         <div className={Style.container}>
-            <h1>Add Task</h1>
+            <h1>Edit Task</h1>
             <div className={Style.categoryWrapper}>
                 <form action="" method="post" onSubmit={(e) => handleSubmit(e)}>
                     <div className={Style.inputWrapper}>
@@ -90,8 +88,7 @@ const TaskForm = () => {
                     <div className={Style.inputWrapper}>
                         <label htmlFor="category">Category:</label>
                         <select name="categories" id="" onChange={(e) => setCategory(e.target.value)}>
-                        <option value = "none">none</option>
-                        <option value="Personal">Personal</option>
+                        <option value="Perosnal">Personal</option>
                         <option value="Work">Work</option>
                             {
                                 categoryList.map((data) => {
@@ -113,4 +110,4 @@ const TaskForm = () => {
 
 }
 
-export default TaskForm
+export default EditTask

@@ -7,27 +7,6 @@ const Sidebar = () => {
 
     return <>
         <div className={Style.sideWrapper}>
-            <div className={Style.topWrapper}>
-                <h1>Today</h1>
-                <div className={Style.cardContainer}>
-                    <div className={Style.card}>
-                        <p>Total task</p>
-                        <h3>100</h3>
-                    </div>
-                    <div className={Style.card}>
-                        <p>In Progress</p>
-                        <h3>100</h3>
-                    </div>
-                    <div className={Style.card}>
-                        <p>Completed</p>
-                        <h3>100</h3>
-                    </div>
-                    <div className={Style.card}>
-                        <p>Overdue</p>
-                        <h3>100</h3>
-                    </div>
-                </div>
-            </div>
             <div className={Style.bottomWrapper}>
                 <h1>Calendar</h1>
                 <Calendar value={today}/>

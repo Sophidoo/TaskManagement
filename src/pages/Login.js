@@ -2,6 +2,7 @@ import Style from "../styles/Login.module.css"
 import register from "../images/register.svg"
 import { useNavigate } from "react-router-dom"
 import { useState } from "react"
+import Alert from "./Alert"
 import Cookies from "universal-cookie"
 
 const Login = () => {
@@ -10,11 +11,14 @@ const Login = () => {
         email: "",
         password: ""
     })
+    // const [status, setStatus] = useState()
     const navigate = useNavigate()
     const cookies = new Cookies();
+    // const [message, setMessage] = useState()
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        // setStatus(false)
 
         try{
             await fetch("https://aya-task-management.onrender.com/api/v1/users/login", {
@@ -37,12 +41,16 @@ const Login = () => {
                         email: "",
                         password: ""
                     })
+                    // setStatus(true)
                     navigate("/overview")
+                    
                 }
+                // setMessage(data)
             })
         }catch(error){
-            console.log(error)
+            <Alert name={error.status} message={error.message}/>
         }
+        // console.log(message)
     }
         
 
