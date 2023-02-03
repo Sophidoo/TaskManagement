@@ -1,4 +1,4 @@
-.settingsWrapper{
+.loading, .settingsWrapper{
     background-color: whitesmoke;
     margin-top: 100px;
     margin-right: 25%;
@@ -43,6 +43,11 @@
     color: yellow;
     transition: 500ms;
 }
+.loading{
+    color: black;
+    display: grid;
+    place-items: center;
+}
 .accountWrapper{
     display: flex;
     flex-direction: column;
@@ -62,19 +67,19 @@
 }
 
 @media(max-width: 1300px){
-    .settingsWrapper{
+    .loading, .settingsWrapper{
         margin-right: 30%;
     }
 }
 @media(max-width: 1000px){
-    .settingsWrapper{
+    .loading, .settingsWrapper{
         margin-right: 0;
         padding: 50px 40px;
     }
 }
 @media(max-width: 800px){
 
-    .settingsWrapper{
+    .loading, .settingsWrapper{
         padding: 40px 20px;
     }
 }
@@ -102,7 +107,7 @@
     }
 }
 @media(max-width: 400px){
-    .settingsWrapper{
+    .loading, .settingsWrapper{
         padding: 40px 10px;
     }
     .settingsWrapper .inputWrapper{

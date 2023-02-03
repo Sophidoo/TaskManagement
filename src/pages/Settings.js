@@ -14,6 +14,8 @@ const Settings = () => {
     const [email, setEmail] = useState()
     const [password, setPassword] = useState()
     const [cpassword, setCPassword] = useState()
+    const [status, setStatus] = useState(false)
+    
 
 
     useEffect(() => {
@@ -33,6 +35,7 @@ const Settings = () => {
                   setLastname(data.data.foundUser.lastname)
                   setOthername(data.data.foundUser.othername)
                   setEmail(data.data.foundUser.email)
+                  setStatus(true)
               })
               .catch((error) => {
                 console.log(error)
@@ -66,6 +69,7 @@ const Settings = () => {
             .then((data) => {
                 console.log(data)
                 alert("Data change Successfull")
+                
                 window.location.reload()
             })
         }catch(error){
@@ -97,6 +101,7 @@ const Settings = () => {
                 .then((data) => {
                     console.log(data)
                     alert("Password changed Successfully")
+                    
                     window.location.reload()
                 })
             }catch(error){
@@ -107,9 +112,17 @@ const Settings = () => {
 
 
     return <>
+
         <BoardNavbar/>
         <Sidebar/>
-
+        {
+            !status ? 
+            <div className={Style.loading}>
+                <h3>Loading...</h3>
+            </div>
+            
+            :
+        
         <div className={Style.settingsWrapper}>
             <div className={Style.accountWrapper}>
                 <h1>Account Details</h1>
@@ -154,6 +167,7 @@ const Settings = () => {
                 </form>
             </div>
         </div>
+        }
     </>
 
 }

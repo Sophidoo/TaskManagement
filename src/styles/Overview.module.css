@@ -7,11 +7,24 @@
     height: fit-content;
     min-height: 86vh;
 }
+.loading{
+    margin-top: 100px;
+    margin-right: 25%;
+    display: grid;
+    place-items: center;
+    min-height: 86vh;
+    background-color: whitesmoke;
+
+}
 .emptyWrapper{
     display: grid;
     place-items: center;
-    height: 86vh;
+    margin-top: 100px;
+    min-height: 86vh;
     display: none;
+    margin-right: 25%;
+    color: black;
+    background-color: whitesmoke;
 }
 .emptyWrapper .wrap{
     display: flex;
@@ -83,12 +96,18 @@
     .hero{
         margin-right: 30%;
     }
+    .loading{
+        margin-right: 30%;
+    }
     .taskWrapper{
         padding: 60px 40px;
     }
 }
 @media(max-width: 1000px){
     .hero{
+        margin-right: 0%;
+    }
+    .loading{
         margin-right: 0%;
     }
     .taskWrapper{

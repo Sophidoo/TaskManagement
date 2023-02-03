@@ -13,12 +13,13 @@ const Register = () => {
         cpassword: ""
     })
     const[PswError, setPswError] = useState("")
+    const[status, setStatus] = useState(true)
     const navigate = useNavigate()
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         setPswError("")
-        alert("Please hold on we are processing your request")
+        setStatus(false)
 
         if(user['password'] !== user['cpassword']){
             setPswError("Password does not match")
@@ -49,7 +50,7 @@ const Register = () => {
                         email: "",
                         password: ""
                     })
-                    alert("Successfull")
+                    setStatus(true)
                     navigate("/login")
                 }
             }catch(error){
@@ -61,6 +62,9 @@ const Register = () => {
     }
 
     return <>
+        <div className={!status ? Style.loading : Style.hide}>
+            <h3>Loading...</h3>
+        </div>
         <div className={Style.wrapper}>
             <div className={Style.leftWrapper}>
                 <div className={Style.formWrapper}>

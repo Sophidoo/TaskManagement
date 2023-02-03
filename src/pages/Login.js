@@ -10,14 +10,15 @@ const Login = () => {
         email: "",
         password: ""
     })
+    const[status, setStatus] = useState(true)
     const navigate = useNavigate()
     const cookies = new Cookies();
 
     const handleSubmit = async (e) => {
+        setStatus(false)
         e.preventDefault();
         // setStatus(false)
 
-        alert("Please hold on, we are processing your request")
         try{
             await fetch("https://aya-task-management.onrender.com/api/v1/users/login", {
                 method: "POST",
@@ -35,6 +36,7 @@ const Login = () => {
                 console.log(data)
                 console.log(data.status)
                 if(data.status !== "success"){
+                    setStatus(true)
                     alert(data.message)
                 }
                 console.log(data.status)
@@ -45,8 +47,8 @@ const Login = () => {
                         password: ""
                     })
                     // setStatus(true)
+                    setStatus(true)
                     navigate("/overview")
-                    alert("Successfull")
 
                     
                 }
@@ -58,6 +60,9 @@ const Login = () => {
     
     
     return <>
+        <div className={!status ? Style.loading : Style.hide}>
+            <h3>Loading...</h3>
+        </div>
         <div className={Style.wrapper}>
             <div className={Style.leftWrapper}>
                 <div className={Style.formWrapper}>

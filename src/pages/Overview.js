@@ -17,7 +17,7 @@ const Overview = () => {
     const[task, setTask] = useState([])
     const[redirect, setRedirect] = useState(false)
     const[checked, setChecked] = useState(false)
-    // const [isCompleted, setIsCompleted] = useState(false)
+    const [status, setStatus] = useState(false)
 
     const navigate = useNavigate()
     const cookies = new Cookies();
@@ -37,6 +37,7 @@ const Overview = () => {
                   console.log(data.data)
                   console.log(token)
                   setCategories(data.data)
+                  setStatus(true)
               })
               .catch((error) => {
                 console.log(error)
@@ -49,7 +50,7 @@ const Overview = () => {
 
     const getTasks = async (category) => {
         setCategoryName(category)
-        alert("Fetching Tasks")
+        setStatus(false)
 
         try{
             await fetch(`https://aya-task-management.onrender.com/api/v1/users/taskandcategory/${category}`, {
@@ -65,6 +66,7 @@ const Overview = () => {
                 console.log(data.data)
                 setTask(data.data)
                 setRedirect(true)
+                setStatus(true)
             })
         }catch(error){
             console.log(error)
@@ -145,6 +147,13 @@ const Overview = () => {
     return <>
         <BoardNavbar/>
         <Sidebar/>
+
+        {
+            !status ? 
+            <div className={Style.loading}>
+                <h3>Loading...</h3>
+            </div> :
+        
         <div className={!redirect ? Style.hero : Style.hide}>
             <div className={Style.emptyWrapper}>
                 <div className={Style.wrap}>
@@ -190,7 +199,14 @@ const Overview = () => {
                 }
             </div>
         </div>
+        }
 
+        {
+            !status ?
+            <div className={Style.loading}>
+                <h3>Loading...</h3>
+            </div> : 
+        
         <div className={redirect ? Style.show : Style.hide}>
             <div className={Style.taskhero}>
                 <h2>{categoryname} <span onClick={() => setRedirect(false)}>Back</span></h2>
@@ -227,6 +243,7 @@ const Overview = () => {
                 </div>
             </div>
         </div>
+        }
 
     </>
 
