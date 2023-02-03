@@ -1,7 +1,7 @@
 import BoardNavbar from "../components/BoardNavbar";
 import Sidebar from "../components/Sidebar";
 import Style from "../styles/Add.module.css";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Cookies from "universal-cookie";
 
 const Category = () => {
