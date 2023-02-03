@@ -9,6 +9,8 @@ const EditTask = () => {
     const [endDate, setEnddate] = useState()
     const [category, setCategory] = useState()
     const [categoryList, setCategoryList] = useState([])
+    const[status, setStatus] = useState(false)
+    const[statuspop, setStatusPop] = useState(true)
     
     const cookies = new Cookies();
     let token = cookies.get("TOKEN")
@@ -28,6 +30,7 @@ const EditTask = () => {
                 .then((data) => {
                 console.log(data)
                   setCategoryList(data.data)
+                  setStatus(true)
               })
               .catch((error) => {
                 console.log(error)
@@ -40,7 +43,7 @@ const EditTask = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        alert("Please hold on we are processing your request")
+        setStatusPop(false)
 
         try{
             await fetch(`https://aya-task-management.onrender.com/api/v1/users/updatetask/${taskid}`, {
@@ -62,6 +65,7 @@ const EditTask = () => {
                 setTaskName("")
                 setEnddate("")
                 setCategory("")
+                setStatusPop(true)
                 window.location.reload()
                 alert("Successfull")
             })
@@ -74,8 +78,18 @@ const EditTask = () => {
     return<>
     <BoardNavbar/>
     <Sidebar/>
+    {
+            !status ? 
+            <div className={Style.loading}>
+                <h3>Loading...</h3>
+            </div>
 
+            :
+        
         <div className={Style.container}>
+            <div className={!statuspop ? Style.loadingpop : Style.hide}>
+                <h3>Loading...</h3>
+            </div>
             <h1>Edit Task</h1>
             <div className={Style.categoryWrapper}>
                 <form action="" method="post" onSubmit={(e) => handleSubmit(e)}>
@@ -90,7 +104,8 @@ const EditTask = () => {
                     
                     <div className={Style.inputWrapper}>
                         <label htmlFor="category">Category:</label>
-                        <select name="categories" id="" onChange={(e) => setCategory(e.target.value)}>
+                        <select name="categories" id="" onChange={(e) => setCategory(e.target.value)} required>
+                        <option value=""></option>
                         <option value="Perosnal">Personal</option>
                         <option value="Work">Work</option>
                             {
@@ -109,6 +124,7 @@ const EditTask = () => {
                 </form>
             </div>
         </div>
+    }
     </>
 
 }

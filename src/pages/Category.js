@@ -7,6 +7,7 @@ import Cookies from "universal-cookie";
 const Category = () => {
 
     const[categoryname, setCategoryName] = useState()
+    const[statuspop, setStatusPop] = useState(true)
 
     const cookies = new Cookies();
     let token = cookies.get("TOKEN")
@@ -14,7 +15,7 @@ const Category = () => {
     const handleSubmit = async (e) => {
         console.log(categoryname)
         e.preventDefault();
-        alert("Please hole on we are processing your request")
+        setStatusPop(false)
 
         try{
             await fetch("https://aya-task-management.onrender.com/api/v1/users/category", {
@@ -34,6 +35,7 @@ const Category = () => {
                 if(data.status === "success"){
                     setCategoryName("")
                 }
+                setStatusPop(true)
                 alert("Successfull")
             })
         }catch(error){
@@ -47,6 +49,9 @@ const Category = () => {
 
         <div className={Style.container}>
                 <h1>Add Category</h1>
+            <div className={!statuspop ? Style.loadingpop : Style.hide}>
+                <h3>Loading...</h3>
+            </div>
             <div className={Style.categoryWrapper}>
                 <form action="" method="POST" onSubmit={(e) => handleSubmit(e)}>
                 <div className={Style.inputWrapper}>

@@ -65,6 +65,24 @@
 .passwordWrapper button{
     margin-top: 14px;
 }
+.hide{
+    display: none;
+}
+.loadingpop{
+    background-color: white;
+    box-shadow: 0px 0px 10px rgba(34, 34, 34, 0.196);
+    height: fit-content;
+    width: fit-content;
+    display: grid;
+    place-items: center;
+    border-radius: 5px;
+    border-top: 5px solid rgb(185, 185, 14);
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 10;
+    padding: 10px 20px;
+}
 
 @media(max-width: 1300px){
     .loading, .settingsWrapper{

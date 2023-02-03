@@ -6,10 +6,11 @@ import Cookies from "universal-cookie";
 
 const TaskForm = () => {
     const [taskName, setTaskName] = useState("")
-    const [isCompleted, setIsCompleted] = useState(false)
     const [endDate, setEnddate] = useState()
     const [category, setCategory] = useState()
     const [categoryList, setCategoryList] = useState([])
+    const[status, setStatus] = useState(false)
+    const[statuspop, setStatusPop] = useState(true)
     
     const cookies = new Cookies();
     let token = cookies.get("TOKEN")
@@ -24,9 +25,8 @@ const TaskForm = () => {
                 })
                 .then((response) => response.json())
                 .then((data) => {
-                console.log(data)
-                setIsCompleted(false)
                   setCategoryList(data.data)
+                  setStatus(true)
               })
               .catch((error) => {
                 console.log(error)
@@ -39,7 +39,7 @@ const TaskForm = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        alert("Please hold on, we are processing your request")
+        setStatusPop(false)
 
         try{
             await fetch("https://aya-task-management.onrender.com/api/v1/users/task", {
@@ -50,7 +50,7 @@ const TaskForm = () => {
                 },
                 body: JSON.stringify({
                     taskName: taskName,
-                    isCompleted: isCompleted,
+                    isCompleted: false,
                     endTime: endDate,
                     category: category
                 })
@@ -58,11 +58,10 @@ const TaskForm = () => {
 
             }).then((response) => response.json())
             .then((data) => {
-                console.log(token)
-                console.log(data)
                 setTaskName("")
                 setEnddate("")
                 setCategory("")
+                setStatusPop(true)
                 alert("Successfull")
                 window.location.reload()
             })
@@ -71,10 +70,20 @@ const TaskForm = () => {
         }
     }
     
-    console.log(categoryList)
     return<>
     <BoardNavbar/>
     <Sidebar/>
+            <div className={!statuspop ? Style.loadingpop : Style.hide}>
+                <h3>Loading...</h3>
+            </div>
+    {
+            !status ? 
+            <div className={Style.loading}>
+                <h3>Loading...</h3>
+            </div>
+
+            :
+        
 
         <div className={Style.container}>
             <h1>Add Task</h1>
@@ -91,8 +100,8 @@ const TaskForm = () => {
                     
                     <div className={Style.inputWrapper}>
                         <label htmlFor="category">Category:</label>
-                        <select name="categories" id="" onChange={(e) => setCategory(e.target.value)}>
-                        <option value = "none">none</option>
+                        <select name="categories" id="" onChange={(e) => setCategory(e.target.value)} required>
+                        <option value = ""></option>
                         <option value="Personal">Personal</option>
                         <option value="Work">Work</option>
                             {
@@ -111,6 +120,7 @@ const TaskForm = () => {
                 </form>
             </div>
         </div>
+    }
     </>
 
 }

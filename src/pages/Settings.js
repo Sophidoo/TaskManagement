@@ -3,7 +3,7 @@ import Sidebar from "../components/Sidebar";
 import Style from "../styles/Setting.module.css";
 import { useEffect, useState } from "react";
 import Cookies from "universal-cookie";
-// import axios from "axios";
+import { useNavigate } from "react-router-dom"
 
 const Settings = () => {
     const cookies = new Cookies()
@@ -15,7 +15,9 @@ const Settings = () => {
     const [password, setPassword] = useState()
     const [cpassword, setCPassword] = useState()
     const [status, setStatus] = useState(false)
+    const [statuspop, setStatusPop] = useState(true)
     
+    const navigate = useNavigate()
 
 
     useEffect(() => {
@@ -48,7 +50,7 @@ const Settings = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        alert("Please hold on, we are processing your request")
+        setStatusPop(false)
 
         try{
             await fetch("https://aya-task-management.onrender.com/api/v1/users/update", {
@@ -68,8 +70,8 @@ const Settings = () => {
             }).then((response) => response.json())
             .then((data) => {
                 console.log(data)
+                setStatusPop(true)
                 alert("Data change Successfull")
-                
                 window.location.reload()
             })
         }catch(error){
@@ -79,10 +81,11 @@ const Settings = () => {
 
     const updatePassword = async (e) => {
         e.preventDefault();
-        alert("Please hold on, we are processing your request")
+        setStatusPop(false)
 
         if(password !== cpassword){
             alert("Password does not match")
+            setStatusPop(true)
         }
         else{
             try{
@@ -101,8 +104,8 @@ const Settings = () => {
                 .then((data) => {
                     console.log(data)
                     alert("Password changed Successfully")
-                    
-                    window.location.reload()
+                    setStatusPop(true)
+                    navigate("/login")
                 })
             }catch(error){
                 console.log(error.message)
@@ -120,10 +123,13 @@ const Settings = () => {
             <div className={Style.loading}>
                 <h3>Loading...</h3>
             </div>
-            
+
             :
         
         <div className={Style.settingsWrapper}>
+            <div className={!statuspop ? Style.loadingpop : Style.hide}>
+                <h3>Loading...</h3>
+            </div>
             <div className={Style.accountWrapper}>
                 <h1>Account Details</h1>
                 <form action="" method="put" onSubmit={(e) => handleSubmit(e)}>
@@ -154,11 +160,11 @@ const Settings = () => {
                 <form action="" method="put" onSubmit={(e) => updatePassword(e)}>
                     <div className={Style.inputWrapper}>
                         <label htmlFor="cpsw">New Password:</label>
-                        <input type="text" name="cpsw" id="cpsw"   value = {password} onChange={(e) => setPassword(e.target.value)}  required/>
+                        <input type="password" name="cpsw" id="cpsw"   value = {password} onChange={(e) => setPassword(e.target.value)}  required/>
                     </div>
                     <div className={Style.inputWrapper}>
                         <label htmlFor="cpsw">Confirm Password:</label>
-                        <input type="text" name="cpsw" id="cpsw"   value = {cpassword} onChange={(e) => setCPassword(e.target.value)}  required/>
+                        <input type="password" name="cpsw" id="cpsw"   value = {cpassword} onChange={(e) => setCPassword(e.target.value)}  required/>
                     </div>
                     <div className={Style.inputWrapper}>
                         <button type="submit">Submit</button>
