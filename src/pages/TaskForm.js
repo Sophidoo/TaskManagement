@@ -94,9 +94,9 @@ const TaskForm = () => {
                         <option value="Personal">Personal</option>
                         <option value="Work">Work</option>
                             {
-                                categoryList.map((data) => {
+                                categoryList.map((data, index) => {
                                     return(
-                                        <option value={data.categoryname}>{data.categoryname}</option>
+                                        <option value={data.categoryname} key={index}>{data.categoryname}</option>
                                     )
                                 })
                             }
