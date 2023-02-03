@@ -68,8 +68,7 @@
 }
 .taskWrapper .taskBottom{
     display: flex;
-    flex-direction: column;
-    row-gap: 2px;
+    justify-content: space-between;
 }
 .taskWrapper .taskBottom span{
     font-weight: 600;

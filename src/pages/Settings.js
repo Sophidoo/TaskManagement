@@ -12,6 +12,8 @@ const Settings = () => {
     const [lastname, setLastname] = useState()
     const [othername, setOthername] = useState()
     const [email, setEmail] = useState()
+    const [password, setPassword] = useState()
+    const [cpassword, setCPassword] = useState()
 
 
     useEffect(() => {
@@ -43,6 +45,7 @@ const Settings = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        alert("Please hold on, we are processing your request")
 
         try{
             await fetch("https://aya-task-management.onrender.com/api/v1/users/update", {
@@ -62,9 +65,43 @@ const Settings = () => {
             }).then((response) => response.json())
             .then((data) => {
                 console.log(data)
+                alert("Data change Successfull")
+                window.location.reload()
             })
         }catch(error){
-            console.log(error)
+            alert(error.message)
+        }
+    }
+
+    const updatePassword = async (e) => {
+        e.preventDefault();
+        alert("Please hold on, we are processing your request")
+
+        if(password !== cpassword){
+            alert("Password does not match")
+        }
+        else{
+            try{
+                await fetch("https://aya-task-management.onrender.com/api/v1/users/updatepassword", {
+                    method: "PUT",
+                    headers: {
+                        'Content-Type': 'application/json',
+                        Authorization: `Bearer ${token}`
+                    },
+                    body: JSON.stringify({
+                        password: password
+                    })
+                    
+    
+                }).then((response) => response.json())
+                .then((data) => {
+                    console.log(data)
+                    alert("Password changed Successfully")
+                    window.location.reload()
+                })
+            }catch(error){
+                console.log(error.message)
+            }
         }
     }
 
@@ -101,18 +138,14 @@ const Settings = () => {
 
             <div className={Style.passwordWrapper}>
                 <h1>Password</h1>
-                <form action="" method="put">
-                    <div className={Style.inputWrapper}>
-                        <label htmlFor="opsw">Old Password:</label>
-                        <input type="text" name="psw" id="psw" required/>
-                    </div>
+                <form action="" method="put" onSubmit={(e) => updatePassword(e)}>
                     <div className={Style.inputWrapper}>
                         <label htmlFor="cpsw">New Password:</label>
-                        <input type="text" name="cpsw" id="cpsw" required/>
+                        <input type="text" name="cpsw" id="cpsw"   value = {password} onChange={(e) => setPassword(e.target.value)}  required/>
                     </div>
                     <div className={Style.inputWrapper}>
                         <label htmlFor="cpsw">Confirm Password:</label>
-                        <input type="text" name="cpsw" id="cpsw" required/>
+                        <input type="text" name="cpsw" id="cpsw"   value = {cpassword} onChange={(e) => setCPassword(e.target.value)}  required/>
                     </div>
                     <div className={Style.inputWrapper}>
                         <button type="submit">Submit</button>

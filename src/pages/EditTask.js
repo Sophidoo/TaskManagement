@@ -40,6 +40,7 @@ const EditTask = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        alert("Please hold on we are processing your request")
 
         try{
             await fetch(`https://aya-task-management.onrender.com/api/v1/users/updatetask/${taskid}`, {
@@ -61,9 +62,11 @@ const EditTask = () => {
                 setTaskName("")
                 setEnddate("")
                 setCategory("")
+                window.location.reload()
+                alert("Successfull")
             })
         }catch(error){
-            console.log(error)
+            alert(error.message)
         }
     }
     
@@ -91,9 +94,9 @@ const EditTask = () => {
                         <option value="Perosnal">Personal</option>
                         <option value="Work">Work</option>
                             {
-                                categoryList.map((data) => {
+                                categoryList.map((data, index) => {
                                     return(
-                                        <option value={data.categoryname}>{data.categoryname}</option>
+                                        <option value={data.categoryname} key={index}>{data.categoryname}</option>
                                     )
                                 })
                             }

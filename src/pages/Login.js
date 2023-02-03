@@ -2,7 +2,6 @@ import Style from "../styles/Login.module.css"
 import register from "../images/register.svg"
 import { useNavigate } from "react-router-dom"
 import { useState } from "react"
-import Alert from "./Alert"
 import Cookies from "universal-cookie"
 
 const Login = () => {
@@ -11,15 +10,14 @@ const Login = () => {
         email: "",
         password: ""
     })
-    // const [status, setStatus] = useState()
     const navigate = useNavigate()
     const cookies = new Cookies();
-    // const [message, setMessage] = useState()
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         // setStatus(false)
 
+        alert("Please hold on, we are processing your request")
         try{
             await fetch("https://aya-task-management.onrender.com/api/v1/users/login", {
                 method: "POST",
@@ -35,6 +33,11 @@ const Login = () => {
             }).then((response) => response.json())
             .then((data) => {
                 console.log(data)
+                console.log(data.status)
+                if(data.status !== "success"){
+                    alert(data.message)
+                }
+                console.log(data.status)
                 cookies.set("TOKEN", data.data.token, {path: "/"})
                 if(data.status === "success"){
                     setUser({
@@ -43,17 +46,17 @@ const Login = () => {
                     })
                     // setStatus(true)
                     navigate("/overview")
+                    alert("Successfull")
+
                     
                 }
-                // setMessage(data)
             })
         }catch(error){
-            <Alert name={error.status} message={error.message}/>
+            console.log(error.message)
         }
-        // console.log(message)
     }
-        
-
+    
+    
     return <>
         <div className={Style.wrapper}>
             <div className={Style.leftWrapper}>

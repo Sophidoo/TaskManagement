@@ -39,6 +39,7 @@ const TaskForm = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        alert("Please hold on, we are processing your request")
 
         try{
             await fetch("https://aya-task-management.onrender.com/api/v1/users/task", {
@@ -62,10 +63,11 @@ const TaskForm = () => {
                 setTaskName("")
                 setEnddate("")
                 setCategory("")
+                alert("Successfull")
                 window.location.reload()
             })
         }catch(error){
-            console.log(error)
+            alert(error)
         }
     }
     

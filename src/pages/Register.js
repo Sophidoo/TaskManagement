@@ -18,6 +18,7 @@ const Register = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         setPswError("")
+        alert("Please hold on we are processing your request")
 
         if(user['password'] !== user['cpassword']){
             setPswError("Password does not match")
@@ -48,10 +49,11 @@ const Register = () => {
                         email: "",
                         password: ""
                     })
-                    navigate("/overview")
+                    alert("Successfull")
+                    navigate("/login")
                 }
             }catch(error){
-                console.log(error)
+                alert(error.message)
             }
         }
         

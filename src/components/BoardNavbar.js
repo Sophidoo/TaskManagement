@@ -1,10 +1,10 @@
 import Style from "../styles/BoardNavbar.module.css";
 import {NavLink} from "react-router-dom";
 import { BsBarChartFill } from "react-icons/bs";
-import { BsBell } from "react-icons/bs";
+// import { BsBell } from "react-icons/bs";
 import { BsGear } from "react-icons/bs";
 import {MdOutlineSpaceDashboard} from "react-icons/md"
-// import {BsCheckCircle} from "react-icons/bs"
+import {FiLogOut} from "react-icons/fi"
 import {BsFillPlusCircleFill} from "react-icons/bs"
 // import {MdSchedule} from "react-icons/md"
 import { useState } from "react";
@@ -21,8 +21,9 @@ const BoardNavbar = () => {
                     <p>TaskPal</p>
                 </div>
                 <div className={Style.rightTopNav}>
-                    <BsBell/>
+                    {/* <BsBell/> */}
                     <NavLink to="/overview/settings" end><BsGear/></NavLink>
+                    <NavLink to="/" end><FiLogOut/></NavLink>
                     
 
                 </div>
@@ -35,14 +36,6 @@ const BoardNavbar = () => {
                         <p>Overview</p>
                     </div>
                     </NavLink>
-                    {/* <div className={Style.link}>
-                        <BsCheckCircle/>
-                        <p>Completed</p>
-                    </div>
-                    <div className={Style.link}>
-                        <MdSchedule/>
-                        <p>Overdue</p>
-                    </div> */}
                 </div>
                 <div className={Style.rightBottomNav}>
                     <BsFillPlusCircleFill onMouseOver={() => setCard(true)}/>

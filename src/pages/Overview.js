@@ -49,6 +49,7 @@ const Overview = () => {
 
     const getTasks = async (category) => {
         setCategoryName(category)
+        alert("Fetching Tasks")
 
         try{
             await fetch(`https://aya-task-management.onrender.com/api/v1/users/taskandcategory/${category}`, {
@@ -89,9 +90,10 @@ const Overview = () => {
             }).then((response) => response.json())
             .then((data) => {
                 console.log(data.data)
+                window.location.reload()
             })
         }catch(error){
-            console.log(error.message)
+            alert(error.message)
         }
     }
 
@@ -111,7 +113,7 @@ const Overview = () => {
 
             }).then((response) => response.json())
             .then((data) => {
-                console.log(data)
+                alert("Task Deleted Successfully")
                 window.location.reload()
                 setRedirect(true)
             })
@@ -119,6 +121,25 @@ const Overview = () => {
             console.log(error.message)
         }
     }
+
+    const deleteCategory = async(id) => {
+        try{
+            await fetch(`https://aya-task-management.onrender.com/api/v1/users/deletecategory/${id}`, {
+                method: "DELETE",
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+
+            }).then((response) => response.json())
+            .then((data) => {
+                alert("Category Deleted Successfully")
+                window.location.reload()
+            })
+        }catch(error){
+            console.log(error.message)
+        }
+    }
+    
 
     // const taskList = task
     return <>
@@ -138,7 +159,7 @@ const Overview = () => {
                         <BsBoxArrowInDownLeft  onClick={() => getTasks("Personal")}/>
                     </div>
                     <div className={Style.taskBottom}>
-                        <p><span>Created: </span> 10:04:34</p>
+                        <p><span>Created: </span> ---</p>
                     </div>
                 </div>
                 <div className={Style.taskBox}>
@@ -147,7 +168,7 @@ const Overview = () => {
                         <BsBoxArrowInDownLeft  onClick={() => getTasks("Work")}/>
                     </div>
                     <div className={Style.taskBottom}>
-                        <p><span>Created: </span> 10:04:34</p>
+                        <p><span>Created: </span> ---</p>
                     </div>
                 </div>
                 {
@@ -160,6 +181,7 @@ const Overview = () => {
                                 </div>
                                 <div className={Style.taskBottom}>
                                     <p><span>Created: </span> {data.createdAt.split("T")[0]}</p>
+                                    <AiOutlineDelete onClick={() => deleteCategory(data._id)}/>
                                 </div>
                             </div>
 
@@ -191,7 +213,7 @@ const Overview = () => {
                                         </form>
                                         <h3 className={!data.isCompleted ? Style.norm : Style.cancel}>{data.taskName}</h3>
                                         <div className={Style.timeWrap}>
-                                            <p>Time Left: <span>{result}</span></p>
+                                            <p>Time Left: <span>{!data.isCompleted ? result : "0.0.0"}</span></p>
                                         </div>
                                     </div>
                                     <div className={Style.rightWrapper}>

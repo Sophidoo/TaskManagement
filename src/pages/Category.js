@@ -14,6 +14,7 @@ const Category = () => {
     const handleSubmit = async (e) => {
         console.log(categoryname)
         e.preventDefault();
+        alert("Please hole on we are processing your request")
 
         try{
             await fetch("https://aya-task-management.onrender.com/api/v1/users/category", {
@@ -33,6 +34,7 @@ const Category = () => {
                 if(data.status === "success"){
                     setCategoryName("")
                 }
+                alert("Successfull")
             })
         }catch(error){
             console.log(error)
