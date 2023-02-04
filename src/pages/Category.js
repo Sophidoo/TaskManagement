@@ -8,6 +8,7 @@ const Category = () => {
 
     const[categoryname, setCategoryName] = useState()
     const[statuspop, setStatusPop] = useState(true)
+    const[text, setText] = useState("")
 
     const cookies = new Cookies();
     let token = cookies.get("TOKEN")
@@ -16,6 +17,7 @@ const Category = () => {
         console.log(categoryname)
         e.preventDefault();
         setStatusPop(false)
+        setText("Loading, Please wait")
 
         try{
             await fetch("https://aya-task-management.onrender.com/api/v1/users/category", {
@@ -35,8 +37,11 @@ const Category = () => {
                 if(data.status === "success"){
                     setCategoryName("")
                 }
-                setStatusPop(true)
-                alert("Successfull")
+                setStatusPop(false)
+                setText("Category added Successfully")
+                setTimeout(() => {
+                    setStatusPop(true)
+                }, 3000);
             })
         }catch(error){
             console.log(error)
@@ -50,7 +55,7 @@ const Category = () => {
         <div className={Style.container}>
                 <h1>Add Category</h1>
             <div className={!statuspop ? Style.loadingpop : Style.hide}>
-                <h3>Loading...</h3>
+                <h3>{text}</h3>
             </div>
             <div className={Style.categoryWrapper}>
                 <form action="" method="POST" onSubmit={(e) => handleSubmit(e)}>

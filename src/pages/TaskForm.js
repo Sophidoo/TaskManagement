@@ -11,6 +11,7 @@ const TaskForm = () => {
     const [categoryList, setCategoryList] = useState([])
     const[status, setStatus] = useState(false)
     const[statuspop, setStatusPop] = useState(true)
+    const[text, setText] = useState("")
     
     const cookies = new Cookies();
     let token = cookies.get("TOKEN")
@@ -27,6 +28,7 @@ const TaskForm = () => {
                 .then((data) => {
                   setCategoryList(data.data)
                   setStatus(true)
+                  setText("")
               })
               .catch((error) => {
                 console.log(error)
@@ -40,6 +42,7 @@ const TaskForm = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         setStatusPop(false)
+        setText("Loading, Please wait")
 
         try{
             await fetch("https://aya-task-management.onrender.com/api/v1/users/task", {
@@ -62,11 +65,13 @@ const TaskForm = () => {
                 setEnddate("")
                 setCategory("")
                 setStatusPop(true)
-                alert("Successfull")
-                window.location.reload()
+                setText("Task Added Successfully")
+                setTimeout(() => {
+                    window.location.reload()
+                }, 3000);
             })
         }catch(error){
-            alert(error)
+            setText(error.message)
         }
     }
     
@@ -74,7 +79,7 @@ const TaskForm = () => {
     <BoardNavbar/>
     <Sidebar/>
             <div className={!statuspop ? Style.loadingpop : Style.hide}>
-                <h3>Loading...</h3>
+                <h3>{text}</h3>
             </div>
     {
             !status ? 

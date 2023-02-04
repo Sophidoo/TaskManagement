@@ -11,12 +11,14 @@ const Login = () => {
         password: ""
     })
     const[status, setStatus] = useState(true)
+    const[text, setText] = useState("")
     const navigate = useNavigate()
     const cookies = new Cookies();
 
     const handleSubmit = async (e) => {
         setStatus(false)
         e.preventDefault();
+        setText("Loading, Please wait")
         // setStatus(false)
 
         try{
@@ -36,7 +38,11 @@ const Login = () => {
                 console.log(data)
                 console.log(data.status)
                 if(data.status !== "success"){
-                    setStatus(true)
+                    setStatus(false)
+                    setText(data.message)
+                    setTimeout(() => {
+                        setStatus(true)
+                    }, 3000)
                 }
                 console.log(data.status)
                 cookies.set("TOKEN", data.data.token, {path: "/"})
@@ -46,8 +52,11 @@ const Login = () => {
                         password: ""
                     })
                     // setStatus(true)
-                    setStatus(true)
-                    navigate("/overview")
+                    setText("Login Successfull")
+                    setTimeout(() => {
+                        setStatus(true)
+                        navigate("/overview")
+                      }, 3000);
 
                     
                 }
@@ -60,7 +69,7 @@ const Login = () => {
     
     return <>
         <div className={!status ? Style.loading : Style.hide}>
-            <h3>Loading...</h3>
+            <h3>{text}</h3>
         </div>
         <div className={Style.wrapper}>
             <div className={Style.leftWrapper}>

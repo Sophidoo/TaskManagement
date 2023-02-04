@@ -18,6 +18,8 @@ const Overview = () => {
     const[redirect, setRedirect] = useState(false)
     const[checked, setChecked] = useState(false)
     const [status, setStatus] = useState(false)
+    const[text, setText] = useState("")
+    const[statuspop, setStatusPop] = useState(true)
 
     const navigate = useNavigate()
     const cookies = new Cookies();
@@ -95,7 +97,7 @@ const Overview = () => {
                 window.location.reload()
             })
         }catch(error){
-            alert(error.message)
+            console.log(error.message)
         }
     }
 
@@ -115,8 +117,11 @@ const Overview = () => {
 
             }).then((response) => response.json())
             .then((data) => {
-                alert("Task Deleted Successfully")
-                window.location.reload()
+                setStatusPop(false)
+                setText("Task Deleted Successfully")
+                setTimeout(() => {
+                    window.location.reload()
+                  }, 3000);
                 setRedirect(true)
             })
         }catch(error){
@@ -134,8 +139,11 @@ const Overview = () => {
 
             }).then((response) => response.json())
             .then((data) => {
-                alert("Category Deleted Successfully")
-                window.location.reload()
+                setStatusPop(false)
+                setText("Category Deleted Successfully")
+                setTimeout(() => {
+                    window.location.reload()
+                  }, 3000);
             })
         }catch(error){
             console.log(error.message)
@@ -155,6 +163,9 @@ const Overview = () => {
             </div> :
         
         <div className={!redirect ? Style.hero : Style.hide}>
+            <div className={!statuspop ? Style.loadingpop : Style.hide}>
+                    <h3>{text}</h3>
+            </div>
             <div className={Style.emptyWrapper}>
                 <div className={Style.wrap}>
                     <ImDropbox/>

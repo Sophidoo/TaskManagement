@@ -15,11 +15,13 @@ const Register = () => {
     const[PswError, setPswError] = useState("")
     const[status, setStatus] = useState(true)
     const navigate = useNavigate()
+    const [text, setText] = useState("")
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         setPswError("")
         setStatus(false)
+        setText("Loading, Please wait")
 
         if(user['password'] !== user['cpassword']){
             setPswError("Password does not match")
@@ -50,11 +52,14 @@ const Register = () => {
                         email: "",
                         password: ""
                     })
-                    setStatus(true)
-                    navigate("/login")
+                    setText("Successfull, You will be redireted shortly")
+                    setTimeout(() => {
+                        setStatus(true)
+                        navigate("/login")
+                      }, 3000);
                 }
             }catch(error){
-                alert(error.message)
+                console.log(error.message)
             }
         }
         
@@ -63,7 +68,7 @@ const Register = () => {
 
     return <>
         <div className={!status ? Style.loading : Style.hide}>
-            <h3>Loading...</h3>
+            <h3>{text}</h3>
         </div>
         <div className={Style.wrapper}>
             <div className={Style.leftWrapper}>

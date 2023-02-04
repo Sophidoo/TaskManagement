@@ -11,6 +11,7 @@ const EditTask = () => {
     const [categoryList, setCategoryList] = useState([])
     const[status, setStatus] = useState(false)
     const[statuspop, setStatusPop] = useState(true)
+    const[text, setText] = useState("")
     
     const cookies = new Cookies();
     let token = cookies.get("TOKEN")
@@ -31,6 +32,7 @@ const EditTask = () => {
                 console.log(data)
                   setCategoryList(data.data)
                   setStatus(true)
+                  setText("")
               })
               .catch((error) => {
                 console.log(error)
@@ -44,6 +46,7 @@ const EditTask = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         setStatusPop(false)
+        setText("Loading, Please wait")
 
         try{
             await fetch(`https://aya-task-management.onrender.com/api/v1/users/updatetask/${taskid}`, {
@@ -65,12 +68,15 @@ const EditTask = () => {
                 setTaskName("")
                 setEnddate("")
                 setCategory("")
-                setStatusPop(true)
-                window.location.reload()
-                alert("Successfull")
+                setStatusPop(false)
+                setText("Task edited Successfully")
+                setTimeout(() => {
+                    setStatusPop(true)
+                    window.location.reload()
+                  }, 3000);
             })
         }catch(error){
-            alert(error.message)
+            console.log(error.message)
         }
     }
     
@@ -88,7 +94,7 @@ const EditTask = () => {
         
         <div className={Style.container}>
             <div className={!statuspop ? Style.loadingpop : Style.hide}>
-                <h3>Loading...</h3>
+                <h3>{text}</h3>
             </div>
             <h1>Edit Task</h1>
             <div className={Style.categoryWrapper}>
