@@ -75,31 +75,31 @@ const Register = () => {
                     <form action="" method="post" onSubmit={(e) => handleSubmit(e)}>
                         <div className={Style.inputWrapper}>
                             <label htmlFor="fnm">First Name:</label>
-                            <input type="text" name="fnm" id="fnm" value = {user['firstname']} onChange={(e) => setUser({...user, firstname: e.target.value})} required />
+                            <input type="text" name="fnm" id="fnm" value = {user['firstname']} onChange={(e) => setUser({...user, firstname: e.target.value})} required  disabled = {!status ? true : false}/>
                         </div>
                         <div className={Style.inputWrapper}>
                             <label htmlFor="lnm">Last Name:</label>
-                            <input type="text" name="lnm" id="lnm" value = {user['lastname']} onChange={(e) => setUser({...user, lastname: e.target.value})} required/>
+                            <input type="text" name="lnm" id="lnm" value = {user['lastname']} onChange={(e) => setUser({...user, lastname: e.target.value})} required disabled = {!status ? true : false}/>
                         </div>
                         <div className={Style.inputWrapper}>
                             <label htmlFor="onm">Other Name:</label>
-                            <input type="text" name="onm" id="onm" value = {user['othername']} onChange={(e) => setUser({...user, othername: e.target.value})}/>
+                            <input type="text" name="onm" id="onm" value = {user['othername']} onChange={(e) => setUser({...user, othername: e.target.value})} disabled = {!status ? true : false}/>
                         </div>
                         <div className={Style.inputWrapper}>
                             <label htmlFor="eml">Email Address:</label>
-                            <input type="text" name="eml" id="eml" value = {user['email']} onChange={(e) => setUser({...user, email: e.target.value})} required />
+                            <input type="text" name="eml" id="eml" value = {user['email']} onChange={(e) => setUser({...user, email: e.target.value})} required disabled = {!status ? true : false}/>
                         </div>
                         <div className={Style.inputWrapper}>
                             <label htmlFor="psw">Password:</label>
-                            <input type="password" name="psw" id="psw" value = {user['password']} onChange={(e) => setUser({...user, password: e.target.value})} required/>
+                            <input type="password" name="psw" id="psw" value = {user['password']} onChange={(e) => setUser({...user, password: e.target.value})} required disabled = {!status ? true : false}/>
                         </div>
                         <div className={Style.inputWrapper}>
                             <label htmlFor="cpsw">Confirm Password:</label>
-                            <input type="password" name="cpsw" id="cpsw" value = {user['cpassword']} onChange={(e) => setUser({...user, cpassword: e.target.value})} required/>
+                            <input type="password" name="cpsw" id="cpsw" value = {user['cpassword']} onChange={(e) => setUser({...user, cpassword: e.target.value})} required disabled = {!status ? true : false}/>
                             <p className={Style.error}>{PswError}</p>
                         </div>
                         <div className={Style.inputWrapper}>
-                            <button type="submit">Submit</button>
+                            <button type="submit" disabled = {!status ? true : false}>Submit</button>
                         </div>
                     </form>
                 </div>

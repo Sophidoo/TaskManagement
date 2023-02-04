@@ -37,7 +37,6 @@ const Login = () => {
                 console.log(data.status)
                 if(data.status !== "success"){
                     setStatus(true)
-                    alert(data.message)
                 }
                 console.log(data.status)
                 cookies.set("TOKEN", data.data.token, {path: "/"})
@@ -73,14 +72,14 @@ const Login = () => {
                     <form action="" method="post" onSubmit={(e) => handleSubmit(e)}>
                         <div className={Style.inputWrapper}>
                             <label htmlFor="eml">Email Address:</label>
-                            <input type="text" name="eml" id="eml"  value = {user['email']} onChange={(e) => setUser({...user, email: e.target.value})} required/>
+                            <input type="text" name="eml" id="eml"  value = {user['email']} onChange={(e) => setUser({...user, email: e.target.value})} required disabled = {!status ? true : false}/>
                         </div>
                         <div className={Style.inputWrapper}>
                             <label htmlFor="psw">Password:</label>
-                            <input type="password" name="psw" id="psw" value = {user['password']} onChange={(e) => setUser({...user, password: e.target.value})} required/>
+                            <input type="password" name="psw" id="psw" value = {user['password']} onChange={(e) => setUser({...user, password: e.target.value})} required disabled = {!status ? true : false} />
                         </div>
                         <div className={Style.inputWrapper}>
-                            <button type="submit">Submit</button>
+                            <button type="submit" disabled = {!status ? true : false}>Submit</button>
                         </div>
                     </form>
                 </div>
