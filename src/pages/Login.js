@@ -88,7 +88,7 @@ const Login = () => {
                             <input type="password" name="psw" id="psw" value = {user['password']} onChange={(e) => setUser({...user, password: e.target.value})} required disabled = {!status ? true : false} />
                         </div>
                         <div className={Style.inputWrapper}>
-                            <button type="submit" disabled = {!status ? true : false}>Submit</button>
+                            <button type="submit" className={!status ? Style.disabled : Style.button}>Submit</button>
                         </div>
                     </form>
                 </div>

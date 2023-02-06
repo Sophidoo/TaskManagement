@@ -61,12 +61,9 @@ const TaskForm = () => {
 
             }).then((response) => response.json())
             .then((data) => {
-                setTaskName("")
-                setEnddate("")
-                setCategory("")
-                setStatusPop(true)
                 setText("Task Added Successfully")
                 setTimeout(() => {
+                    setStatusPop(true)
                     window.location.reload()
                 }, 3000);
             })
@@ -99,7 +96,7 @@ const TaskForm = () => {
                         <input type="text" name="fnm" id="fnm" required value={taskName} onChange={(e) => setTaskName(e.target.value)}/>
                     </div>
                     <div className={Style.inputWrapper}>
-                        <label htmlFor="edate">Task End Time:</label>
+                        <label htmlFor="edate">Task Time:</label>
                         <input type="datetime-local" name="edate" id="edate" required  value={endDate} onChange={(e) => setEnddate(e.target.value)}/>
                     </div>
                     

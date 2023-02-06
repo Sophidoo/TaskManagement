@@ -42,8 +42,13 @@ const Register = () => {
                     
 
                 });
-                // let resJson = await res.json();
-                if(res.status === 200){
+                let resJson = await res.json();
+                if(resJson.status === "error"){
+                    setText(resJson.data)
+                    setTimeout(() => {
+                        setStatus(true)
+                      }, 3000);
+                }else if(res.status === 200){
                     console.log(user['password'])
                     setUser({
                         firstname: "",
@@ -104,7 +109,7 @@ const Register = () => {
                             <p className={Style.error}>{PswError}</p>
                         </div>
                         <div className={Style.inputWrapper}>
-                            <button type="submit" disabled = {!status ? true : false}>Submit</button>
+                            <button type="submit" className={!status ? Style.disabled : Style.button}>Submit</button>
                         </div>
                     </form>
                 </div>

@@ -93,7 +93,6 @@ const Overview = () => {
                 
             }).then((response) => response.json())
             .then((data) => {
-                console.log(data.data)
                 window.location.reload()
             })
         }catch(error){

@@ -46,7 +46,7 @@
     border: 1px solid black;
 }
 
-.leftWrapper button{
+.leftWrapper .button{
     margin-top: 0px;
     padding: 10px 20px;
     font-size: 16px;
@@ -56,7 +56,7 @@
     border: 0px;
     box-shadow: 0px 7px 15px rgba(11, 84, 11, 0.249);
 }
-.leftWrapper button:hover{
+.leftWrapper .button:hover{
     cursor: pointer;
     color: yellow;
     transition: 500ms;
@@ -95,7 +95,16 @@
     width: 80%;
     /* background-color: red; */
 }
-
+.disabled{
+    background-color: rgb(145, 157, 145);
+    cursor: not-allowed;
+    margin-top: 0px;
+    padding: 10px 20px;
+    font-size: 15px;
+    color: white;
+    border-radius: 5px;
+    border: 0px;
+}
 
 
 @media(max-width: 1300px){
@@ -113,7 +122,7 @@
     .leftWrapper label{
         font-size: 14px;
     }
-    .leftWrapper button{
+    .leftWrapper .button{
         font-size: 14px;
     }
     .formWrapper{
