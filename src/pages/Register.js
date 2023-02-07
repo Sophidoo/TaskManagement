@@ -109,7 +109,7 @@ const Register = () => {
                             <p className={Style.error}>{PswError}</p>
                         </div>
                         <div className={Style.inputWrapper}>
-                            <button type="submit" className={!status ? Style.disabled : Style.button}>Submit</button>
+                            <button type="submit" className={!status ? Style.disabled : Style.button}  disabled = {!status ? true : false}>Submit</button>
                         </div>
                     </form>
                 </div>

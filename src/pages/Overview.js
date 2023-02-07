@@ -36,8 +36,10 @@ const Overview = () => {
                 .then((response) => response.json())
               .then((data) => {
                 console.log(data)
-                  console.log(data.data)
-                  console.log(token)
+                if(data.status === "Failed"){
+                    navigate("/login")
+                    window.location.reload()
+                }
                   setCategories(data.data)
                   setStatus(true)
               })
@@ -47,7 +49,7 @@ const Overview = () => {
         }
 
         fetchData()
-    }, [token])
+    }, [token, navigate])
 
 
     const getTasks = async (category) => {
@@ -78,6 +80,7 @@ const Overview = () => {
     const updateTaskCompletion = async (e, id) => {
         setChecked(e.target.checked)
         // window.location.reload()
+        console.log(e.target.checked)
         console.log(checked)
         console.log(id)
         try{
@@ -87,13 +90,15 @@ const Overview = () => {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
-                    isCompleted: !checked 
+                    isCompleted: e.target.checked 
                 })
                 
                 
             }).then((response) => response.json())
             .then((data) => {
                 window.location.reload()
+                console.log(data.isCompleted)
+                setRedirect(true)
             })
         }catch(error){
             console.log(error.message)
@@ -118,10 +123,7 @@ const Overview = () => {
             .then((data) => {
                 setStatusPop(false)
                 setText("Task Deleted Successfully")
-                setTimeout(() => {
-                    window.location.reload()
-                  }, 3000);
-                setRedirect(true)
+                window.location.reload()
             })
         }catch(error){
             console.log(error.message)
@@ -148,7 +150,7 @@ const Overview = () => {
             console.log(error.message)
         }
     }
-    
+
 
     // const taskList = task
     return <>
@@ -235,7 +237,7 @@ const Overview = () => {
                                 <div className={Style.task} key={index}>
                                     <div className={Style.leftWrapper}>
                                         <form action="" method="post">
-                                            <input type="checkbox" name="isCompleted" id="" checked={data.isCompleted ? true : false} onChange={(e) => updateTaskCompletion(e, data._id)}/>
+                                            <input type="checkbox" name="isCompleted" id="" checked={data.isCompleted  ? true : false} onChange={(e) => updateTaskCompletion(e, data._id)}/>
                                         </form>
                                         <h3 className={!data.isCompleted ? Style.norm : Style.cancel}>{data.taskName}</h3>
                                         <div className={Style.timeWrap}>

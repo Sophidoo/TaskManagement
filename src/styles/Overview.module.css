@@ -201,8 +201,11 @@
     column-gap: 5px;
 }
 .task .leftWrapper input{
-    width: 15px;
-    height: 15px;
+    width: 18px;
+    height: 18px;
+}
+.task .leftWrapper input:hover{
+    cursor: pointer;
 }
 .task .timeWrap{
     display: flex;
